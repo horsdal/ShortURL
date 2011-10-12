@@ -11,9 +11,9 @@
         {
             Get["/"] = _ => View["index.html"];
             Post["/"] = _ => ShortenUrl();
-            Get["/{shorturl}"] = _ =>
+            Get["/{shorturl}"] = param =>
             {
-                string shortUrl = _.shorturl;
+                string shortUrl = param.shorturl;
                 return Response.AsRedirect(urlMap[shortUrl.ToString()]);
             };
         }

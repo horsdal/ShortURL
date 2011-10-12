@@ -53,7 +53,7 @@
 			var baseUrlPostResponse = app.Post("/",
 				with =>
 				{
-					with.FormValue("url", "http://http://www.longurlplease.com/");
+					with.FormValue("url", "http://www.longurlplease.com/");
 					with.HttpRequest();
 				});
 
@@ -69,7 +69,7 @@
 			var baseUrlPostResponse = app.Post("/",
 				with =>
 				{
-					with.FormValue("url", "http://http://www.longurlplease.com/");
+					with.FormValue("url", "http://www.longurlplease.com/");
 					with.HttpRequest();
 				}).GetBodyAsXml();
 
@@ -81,7 +81,7 @@
 
 			//then
 			app.Get("/" + shortUrl, with => with.HttpRequest())
-				.ShouldHaveRedirectedTo("http://http://www.longurlplease.com/");
+				.ShouldHaveRedirectedTo("http://www.longurlplease.com/");
 		}
 	}
 }
