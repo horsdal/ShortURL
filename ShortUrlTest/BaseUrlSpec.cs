@@ -74,7 +74,7 @@
 				}).GetBodyAsXml();
 
 			var shortUrl = baseUrlPostResponse
-				.Element("a")
+				.Element("html").Element("body").Element("a")
 				.Attribute("href").Value
 				.Split('/')
 				.Last();

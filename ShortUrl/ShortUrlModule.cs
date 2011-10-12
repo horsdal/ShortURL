@@ -18,12 +18,13 @@
             };
         }
 
-        private string ShortenUrl()
+        private Response ShortenUrl()
         {
             string longUrl = Request.Form.url;
             var shortUrl = ShortenUrl(longUrl);
             urlMap[shortUrl] = longUrl;
 
+			return View["shortened_url", new { Host = Request.Headers.Host, ShortUrl = shortUrl }];
             return ShortenedUrlView(shortUrl);
         }
 
