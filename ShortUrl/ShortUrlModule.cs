@@ -25,17 +25,11 @@
             urlMap[shortUrl] = longUrl;
 
 			return View["shortened_url", new { Host = Request.Headers.Host, ShortUrl = shortUrl }];
-            return ShortenedUrlView(shortUrl);
         }
 
         private string ShortenUrl(string longUrl)
         {
             return "a" + longUrl.GetHashCode();
-        }
-
-        private string ShortenedUrlView(string shortUrl)
-        {
-            return string.Format("<a id=\"shorturl\" href=\"http://{0}/{1}\">http://{0}/{1}</a>", Request.Headers.Host, shortUrl);
         }
     }
 }
