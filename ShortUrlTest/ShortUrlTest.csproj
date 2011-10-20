@@ -37,6 +37,9 @@
     <Reference Include="HtmlAgilityPlus, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.Testing.0.8.0\lib\net40\HtmlAgilityPlus.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Nancy.0.8.0\lib\net40\Nancy.dll</HintPath>
@@ -60,6 +63,7 @@
     <Compile Include="BaseUrlSpec.cs" />
     <Compile Include="BrowserResponseExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UrlStorageTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
