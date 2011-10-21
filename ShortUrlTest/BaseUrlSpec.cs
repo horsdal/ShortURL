@@ -20,7 +20,6 @@
 		[Fact]
 		public void should_respond_ok()
 		{
-			var app = new Browser(new DefaultNancyBootstrapper());
 			var response = app.Get("/", with => with.HttpRequest());
 			var statusCode = response.StatusCode;
 			Assert.Equal(HttpStatusCode.OK, statusCode);

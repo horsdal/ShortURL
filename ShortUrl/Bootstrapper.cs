@@ -9,7 +9,8 @@
 		{
 			base.ConfigureApplicationContainer(container);
 
-			container.Register<UrlStore>(new MongoUrlStore());
+			var mongoUrlStore = new MongoUrlStore("mongodb://localhost:27010/short_url");
+			container.Register<UrlStore>(mongoUrlStore);
 		}
 	}
 }
