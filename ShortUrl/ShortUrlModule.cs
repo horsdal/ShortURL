@@ -1,7 +1,6 @@
 ﻿namespace ShortUrl
 {
-	using System.Collections.Generic;
-	using Nancy;
+    using Nancy;
 	
 	public class ShortUrlModule : NancyModule
     {
@@ -20,9 +19,9 @@
         {
             string longUrl = Request.Form.url;
             var shortUrl = ShortenUrl(longUrl);
-			urlStore.SaveUrl(longUrl, shortUrl);
-
-			return View["shortened_url", new { Request.Headers.Host, ShortUrl = shortUrl }];
+            urlStore.SaveUrl(longUrl, shortUrl);
+            
+            return View["shortened_url", new { Request.Headers.Host, ShortUrl = shortUrl }];
         }
 
         private string ShortenUrl(string longUrl)

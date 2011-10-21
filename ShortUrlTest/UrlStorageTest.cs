@@ -1,11 +1,9 @@
-﻿using Moq;
-
-namespace ShortUrlTest
+﻿namespace ShortUrlTest
 {
 	using Xunit;
-	using Nancy;
 	using Nancy.Testing;
-	using ShortUrl;
+    using Moq;
+    using ShortUrl;
 
 	public class UrlStorageTest
 	{

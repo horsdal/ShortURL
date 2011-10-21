@@ -1,14 +1,11 @@
-﻿using System;
-using System.Linq;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-
-namespace ShortUrl.DataAccess
+﻿namespace ShortUrl.DataAccess
 {
-	using System.Collections.Generic;
+    using System.Linq;
+    using MongoDB.Bson;
+    using MongoDB.Driver;
+    using MongoDB.Driver.Builders;
 
-	public class MongoUrlStore : UrlStore
+    public class MongoUrlStore : UrlStore
 	{
 
 #if false

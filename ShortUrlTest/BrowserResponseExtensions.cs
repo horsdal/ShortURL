@@ -1,9 +1,9 @@
-﻿using System.IO;
-using System.Xml.Linq;
-using Nancy.Testing;
-
-namespace ShortUrlTest
+﻿namespace ShortUrlTest
 {
+    using System.IO;
+    using System.Xml.Linq;
+    using Nancy.Testing;
+    
     public static class BrowserResponseExtensions
     {
         public static XDocument GetBodyAsXml(this BrowserResponse response)

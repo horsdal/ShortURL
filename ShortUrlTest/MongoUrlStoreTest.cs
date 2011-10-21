@@ -1,13 +1,13 @@
-﻿using System.Linq;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-using ShortUrl.DataAccess;
-using Xunit;
-
-namespace ShortUrlTest
+﻿namespace ShortUrlTest
 {
-	public class MongoUrlStoreTest
+    using System.Linq;
+    using MongoDB.Bson;
+    using MongoDB.Driver;
+    using MongoDB.Driver.Builders;
+    using ShortUrl.DataAccess;
+    using Xunit;
+
+    public class MongoUrlStoreTest
 	{
 		private string connectionString = "mongodb://localhost:27010/short_url_test";
 		private MongoDatabase database;
