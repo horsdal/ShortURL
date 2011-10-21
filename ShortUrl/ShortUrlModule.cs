@@ -5,8 +5,6 @@
 	
 	public class ShortUrlModule : NancyModule
     {
-        private static readonly Dictionary<string, string> urlMap = new Dictionary<string, string>();
-
         public ShortUrlModule(UrlStore urlStore)
         {
             Get["/"] = _ => View["index.html"];
@@ -14,7 +12,7 @@
             Get["/{shorturl}"] = param =>
             {
                 string shortUrl = param.shorturl;
-                return Response.AsRedirect(urlMap[shortUrl.ToString()]);
+                return Response.AsRedirect(urlStore.GetUrlFor(shortUrl.ToString()));
             };
         }
 
@@ -22,10 +20,9 @@
         {
             string longUrl = Request.Form.url;
             var shortUrl = ShortenUrl(longUrl);
-         //   urlMap[shortUrl] = longUrl;
 			urlStore.SaveUrl(longUrl, shortUrl);
 
-			return View["shortened_url", new { Host = Request.Headers.Host, ShortUrl = shortUrl }];
+			return View["shortened_url", new { Request.Headers.Host, ShortUrl = shortUrl }];
         }
 
         private string ShortenUrl(string longUrl)

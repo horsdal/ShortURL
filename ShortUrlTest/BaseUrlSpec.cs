@@ -14,7 +14,7 @@
 		public BaseUrlSpec()
 		{
 			ShortUrlModule artificiaReference;
-			app = new Browser(new DefaultNancyBootstrapper());
+			app = new Browser(new Bootstrapper());
 		}
 
 		[Fact]
@@ -25,6 +25,7 @@
 			var statusCode = response.StatusCode;
 			Assert.Equal(HttpStatusCode.OK, statusCode);
 		}
+
 		[Fact]
 		public void should_contain_a_form_with_an_input_field_for_a_url_and_a_button()
 		{
