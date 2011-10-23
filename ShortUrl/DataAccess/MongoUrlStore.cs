@@ -7,20 +7,6 @@
 
     public class MongoUrlStore : UrlStore
 	{
-
-#if false
-		private static readonly Dictionary<string, string> urlMap = new Dictionary<string, string>();
-
-		public void SaveUrl(string url, string shortenedUrl)
-		{
-			urlMap[shortenedUrl] = url;
-		}
-
-		public string GetUrlFor(string shortenedUrl)
-		{
-			return urlMap[shortenedUrl];
-		}
-#endif
 		private MongoDatabase database;
 		private MongoCollection<BsonDocument> urls;
 

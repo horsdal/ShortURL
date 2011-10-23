@@ -12,12 +12,13 @@
 
 		public UrlStorageTest()
 		{
-			//Given
-			fakeStorage = new Moq.Mock<UrlStore>();
-			ShortUrlModule artificiaReference;
-			app = app = new Browser(
-							new ConfigurableBootstrapper(
-								with => with.Dependency(fakeStorage.Object)));
+            ShortUrlModule artificiaReference;
+            
+            //Given
+			fakeStorage = new Mock<UrlStore>();
+		    app = new Browser(
+                    new ConfigurableBootstrapper(
+		                with => with.Dependency(fakeStorage.Object)));
 
 		}
 
@@ -35,7 +36,8 @@
 			//Then
 			fakeStorage
 				.Verify(store =>
-					store.SaveUrl("http://www.longurlplease.com/", Moq.It.IsAny<string>()));
+                    store.SaveUrl("http://www.longurlplease.com/", 
+                                  It.IsAny<string>()));
 		}
 
 		[Fact]
@@ -48,7 +50,7 @@
 			//Then
 			fakeStorage
 				.Verify(store => 
-				store.GetUrlFor("shorturl"));
+                    store.GetUrlFor("shorturl"));
 		}
 	}
 }
