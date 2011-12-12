@@ -34,13 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Nancy, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.0.8.0\lib\net40\Nancy.dll</HintPath>
+      <HintPath>..\packages\Nancy.0.9.0\lib\net40\Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.Hosting.Aspnet, Version=0.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Nancy.Hosting.Aspnet, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.8.0\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
+      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.9.0\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />

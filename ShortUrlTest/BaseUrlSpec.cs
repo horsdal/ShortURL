@@ -8,12 +8,10 @@
 
 	public class BaseUrlSpec
 	{
-
 		private Browser app;
 
 		public BaseUrlSpec()
 		{
-			ShortUrlModule artificiaReference;
 			app = new Browser(new Bootstrapper());
 		}
 

@@ -1,6 +1,8 @@
 ﻿namespace ShortUrl
 {
-	using Nancy;
+    using Nancy;
+    using Nancy.Bootstrapper;
+    using Nancy.ViewEngines;
 	using DataAccess;
 
 	public class Bootstrapper : DefaultNancyBootstrapper
@@ -12,5 +14,14 @@
 			var mongoUrlStore = new MongoUrlStore("mongodb://localhost:27010/short_url");
 			container.Register<UrlStore>(mongoUrlStore);
 		}
+
+        protected override NancyInternalConfiguration InternalConfiguration
+        {
+            get
+            {
+                return NancyInternalConfiguration.WithOverrides(
+                    x => x.ViewLocationProvider = typeof(ResourceViewLocationProvider));
+            }
+        }
 	}
 }

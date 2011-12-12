@@ -1,9 +1,9 @@
-﻿using System;
-using Nancy.Hosting.Self;
-using ShortUrl;
-
-namespace ShortUrlDesktopApp
+﻿namespace ShortUrlDesktopApp
 {
+    using System;
+    using Nancy.Hosting.Self;
+    using ShortUrl;
+
     class Program
     {
         static void Main(string[] args)
