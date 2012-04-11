@@ -18,8 +18,8 @@
 
 		public void SaveUrl(string url, string shortenedUrl)
 		{
-			urls.Insert(new {url, shortenedUrl});
-		}
+      urls.Save(new { Id = url, url, shortenedUrl });
+    }
 
 		public string GetUrlFor(string shortenedUrl)
 		{

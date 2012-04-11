@@ -26,7 +26,7 @@
 
         private string ShortenUrl(string longUrl)
         {
-            return "a" + longUrl.GetHashCode();
+            return longUrl.GetHashCode().ToString();
         }
     }
 }
