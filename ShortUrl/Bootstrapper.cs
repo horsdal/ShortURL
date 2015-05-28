@@ -1,5 +1,6 @@
 ﻿namespace ShortUrl
 {
+  using System.Reflection;
   using Nancy;
   using Nancy.Bootstrapper;
   using Nancy.ViewEngines;
@@ -20,8 +21,9 @@
     {
       get
       {
-        return NancyInternalConfiguration.WithOverrides(
-          x => x.ViewLocationProvider = typeof (ResourceViewLocationProvider));
+        ResourceViewLocationProvider.RootNamespaces[Assembly.GetAssembly(this.GetType())] = "ShortUrl";
+        return NancyInternalConfiguration
+          .WithOverrides(x => x.ViewLocationProvider = typeof(ResourceViewLocationProvider));
       }
     }
   }
