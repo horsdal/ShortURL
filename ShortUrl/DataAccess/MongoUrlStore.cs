@@ -1,32 +1,33 @@
 ﻿namespace ShortUrl.DataAccess
 {
-    using System.Linq;
+    using System.Threading;
     using MongoDB.Bson;
     using MongoDB.Driver;
-    using MongoDB.Driver.Builders;
 
     public class MongoUrlStore : UrlStore
 	{
-		private MongoDatabase database;
-		private MongoCollection<BsonDocument> urls;
+		private IMongoDatabase database;
+		private IMongoCollection<BsonDocument> urls;
 
 		public MongoUrlStore(string connectionString)
 		{
-			database = MongoDatabase.Create(connectionString);
-			urls = database.GetCollection("urls");
+			database = new MongoClient(connectionString).GetDatabase("short_url");
+			urls = database.GetCollection<BsonDocument>("urls");
 		}
 
-		public void SaveUrl(string url, string shortenedUrl)
-		{
-      urls.Save(new { Id = url, url, shortenedUrl });
-    }
+      public void SaveUrl(string url, string shortenedUrl)
+      {
+        var newDoc = new BsonDocument {{"Id", url}, { "url",  url }, { "shortenedUrl", shortenedUrl} };
+        urls.InsertOneAsync(newDoc, CancellationToken.None);
+      }
 
-		public string GetUrlFor(string shortenedUrl)
+      public string GetUrlFor(string shortenedUrl)
 		{
 			var urlDocument =  
 				urls
-				.Find(Query.EQ("shortenedUrl", shortenedUrl))
-				.FirstOrDefault();
+				.Find(Builders<BsonDocument>.Filter.Eq("shortenedUrl", shortenedUrl))
+				.FirstOrDefaultAsync()
+        .Result;
 
 			return 
 				urlDocument == null ? 

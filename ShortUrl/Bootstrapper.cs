@@ -4,14 +4,15 @@
   using Nancy.Bootstrapper;
   using Nancy.ViewEngines;
   using DataAccess;
+  using Nancy.TinyIoc;
 
   public class Bootstrapper : DefaultNancyBootstrapper
   {
-    protected override void ConfigureApplicationContainer(TinyIoC.TinyIoCContainer container)
+    protected override void ConfigureApplicationContainer(TinyIoCContainer container)
     {
       base.ConfigureApplicationContainer(container);
 
-      var mongoUrlStore = new MongoUrlStore("mongodb://localhost:27010/short_url");
+      var mongoUrlStore = new MongoUrlStore("mongodb://localhost:27010/");
       container.Register<UrlStore>(mongoUrlStore);
     }
 

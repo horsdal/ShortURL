@@ -1,36 +1,35 @@
 ﻿namespace ShortUrlTest
 {
-    using System.Linq;
-    using MongoDB.Bson;
-    using MongoDB.Driver;
-    using MongoDB.Driver.Builders;
-    using ShortUrl.DataAccess;
-    using Xunit;
+  using System.Threading.Tasks;
+  using MongoDB.Bson;
+  using MongoDB.Driver;
+  using ShortUrl.DataAccess;
+  using Xunit;
 
-    public class MongoUrlStoreTest
+  public class MongoUrlStoreTest
 	{
 		private string connectionString = "mongodb://localhost:27010/short_url_test";
-		private MongoDatabase database;
-		private MongoCollection<BsonDocument> urlCollection;
+		private IMongoDatabase database;
+		private IMongoCollection<BsonDocument> urlCollection;
 
 		public MongoUrlStoreTest()
 		{
-			//given
-			database = MongoDatabase.Create(connectionString);
-			urlCollection = database.GetCollection("urls");
+      //given
+      this.database = new MongoClient(this.connectionString).GetDatabase("short_url");
+      this.urlCollection = this.database.GetCollection<BsonDocument>("urls");
 		}
 
 		[Fact]
-		public void should_store_urls_in_mongo()
+		public async Task should_store_urls_in_mongo()
 		{
 			//when
-			var store = new MongoUrlStore(connectionString);
+			var store = new MongoUrlStore(this.connectionString);
 			store.SaveUrl("http://somelongurl.com/", "http://shorturl/abc");
 
 			//then
-			var urlFromDB = urlCollection
-				.Find(Query.EQ("url", "http://somelongurl.com/"))
-				.FirstOrDefault();
+			var urlFromDB = await this.urlCollection
+				.Find(Builders<BsonDocument>.Filter.Eq("url", "http://somelongurl.com/"))
+				.FirstOrDefaultAsync();
 
 			Assert.NotNull(urlFromDB);
 			Assert.Equal(urlFromDB["shortenedUrl"], "http://shorturl/abc");
@@ -40,7 +39,7 @@
 		public void should_be_able_to_find_shortened_urls()
 		{
 			//given
-			var store = new MongoUrlStore(connectionString);
+			var store = new MongoUrlStore(this.connectionString);
 			store.SaveUrl("http://somelongurl.com/", "http://shorturl/abc");
 
 			//when

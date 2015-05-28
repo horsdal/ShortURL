@@ -1,8 +1,9 @@
 ﻿namespace ShortUrl
 {
     using Nancy;
-	
-	public class ShortUrlModule : NancyModule
+    using Nancy.Responses.Negotiation;
+
+  public class ShortUrlModule : NancyModule
     {
         public ShortUrlModule(UrlStore urlStore)
         {
@@ -15,7 +16,7 @@
             };
         }
 
-        private Response ShortenUrl(UrlStore urlStore)
+        private Negotiator ShortenUrl(UrlStore urlStore)
         {
             string longUrl = Request.Form.url;
             var shortUrl = ShortenUrl(longUrl);
